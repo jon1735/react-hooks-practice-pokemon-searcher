@@ -7,14 +7,14 @@ function PokemonCard({ pokemon }) {
   const {name, hp, sprites} = pokemon
 
   const handlePokemonClick = () => {
-    setPokemonObject((pokemon) => !pokemon)
+    setPokemonObject((pokeObject) => !pokeObject)
   }
-
+console.log(sprites)
   return (
     <Card>
       <div onClick={handlePokemonClick}>
         <div className="image">
-          <img alt={name} src={pokeObject ? sprites.front : sprites.back}/>
+          <img src={pokeObject ? sprites.front : sprites.back} alt={name}/>
         </div>
         <div className="content">
           <div className="header">{name}</div>
