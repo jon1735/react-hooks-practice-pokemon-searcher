@@ -1342,11 +1342,11 @@
       }
     },
     {
-      "name": "Bulbasaur",
-      "hp": "40",
+      "name": "Bidoof",
+      "hp": "2000",
       "sprites": {
-        "front": "https://img.pokemondb.net/sprites/platinum/normal/bulbasaur.png",
-        "back": "https://img.pokemondb.net/sprites/platinum/back-shiny/bulbasaur.png"
+        "front": "https://img.pokemondb.net/sprites/black-white/shiny/bidoof-f.png",
+        "back": "https://img.pokemondb.net/sprites/black-white/back-shiny/bidoof-f.png"
       },
       "id": 151
     }

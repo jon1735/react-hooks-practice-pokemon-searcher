@@ -4,41 +4,40 @@ import PokemonForm from "./PokemonForm";
 import Search from "./Search";
 import { Container } from "semantic-ui-react";
 
-
 function PokemonPage() {
-  const [pokeObject, setPokemonObject] = useState([])
-  const [searchTerm, setSearchTerm] = useState("")
-
-  useEffect (() => {
-    fetch("http://localhost:3001/pokemon")
-    .then(r => r.json())
-    .then(data => setPokemonObject(data)) 
-  }, [])
+  const [pokemon, setPokemon] = useState([])
+  const [pokemonSearch, setPokemonSearch] = useState("")
   
+  useEffect(() => {
+    fetch("http://localhost:3001/pokemon")
+      .then((r) => r.json())
+      .then(setPokemon)
+  }, [])
 
-  const setPokemonFilter = pokeObject.filter((monster) =>
-    monster.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleAddPokemon = (newPokemon) => {
-    setPokemonObject([...pokeObject, newPokemon]);
+  const handleAddNewPokemon = (addNewPokemon) => {
+    setPokemon([...pokemon, addNewPokemon])
   }
 
+
+  const pokemonRendered = pokemon.filter((poke) => {
+     return poke.name.toLowerCase().includes(pokemonSearch.toLowerCase())
+  })
 
   return (
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
       <PokemonForm 
-      onAddPokemon={handleAddPokemon}
+      onAddPokemon={handleAddNewPokemon}
       />
       <br />
       <Search 
-      searchTerm={searchTerm} onChangeSearch={setSearchTerm}
+      pokemonSearch={pokemonSearch}
+      onChangePokemonSearch={setPokemonSearch}
       />
       <br />
       <PokemonCollection 
-      pokemon={setPokemonFilter}
+      pokemon={pokemonRendered}
       />
     </Container>
   );

@@ -1,20 +1,21 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Card } from "semantic-ui-react";
 
-
 function PokemonCard({ pokemon }) {
-  const [pokeObject, setPokemonObject] = useState(true)
-  const {name, hp, sprites} = pokemon
 
-  const handlePokemonClick = () => {
-    setPokemonObject((pokeObject) => !pokeObject)
-  }
-console.log(sprites)
+  const { name, hp, sprites } = pokemon
+
+  const [cardFront, setCardFront] = useState(true)
+    const handleClick = () => {
+      setCardFront((cardFront) => !cardFront) 
+    }
+
+
   return (
     <Card>
-      <div onClick={handlePokemonClick}>
+      <div onClick={handleClick}>
         <div className="image">
-          <img src={pokeObject ? sprites.front : sprites.back} alt={name}/>
+          <img src={cardFront ? sprites.front : sprites.back} alt= {name} />
         </div>
         <div className="content">
           <div className="header">{name}</div>
@@ -22,7 +23,7 @@ console.log(sprites)
         <div className="extra content">
           <span>
             <i className="icon heartbeat red" />
-           {hp}
+            {hp}
           </span>
         </div>
       </div>

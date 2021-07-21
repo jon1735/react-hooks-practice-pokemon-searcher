@@ -1,50 +1,44 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
 
 function PokemonForm({ onAddPokemon }) {
-
-const [formData, setFormData] = useState({
-  name: "",
-  hp: "",
-  sprites: {
-  frontUrl: "",
-  backUrl: "",
-  }
-})
-
-function handleChange(event) {
-  setFormData({
-    ...formData,
-    [event.target.name]: event.target.value
+  const [formData, setFormData] = useState ({
+    name: "",
+    hp: "",
+    frontUrl: "",
+    backUrl: ""
   })
-}
 
-const handleSubmit = (event) => {
-  event.preventDefault()
-
-  const newPokemon ={
-    
-    name: formData.name,
-    hp: formData.hp,
-    sprites:{
-       front: formData.frontUrl,
-       back: formData.backUrl
+  const handleChange = (event) => {
+    setFormData({
+      ...formData, 
+      [event.target.name]: event.target.value
+    })
   }
-}
 
-  fetch("http://localhost:3001/pokemon", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify(newPokemon)
-  })
-      .then (r => r.json())
-      .then(onAddPokemon);
-}
+  const handleSubmit = (event) => {
+    event.preventDefault()
 
-
+    const addNewPokemon = {
+      name: formData.name,
+      hp: formData.hp,
+      sprites: {
+        front: formData.frontUrl,
+        back: formData.backUrl
+      }
+    }
+    fetch("http://localhost:3001/pokemon",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(addNewPokemon)
+    })
+        .then((r) => r.json())
+        .then(onAddPokemon)
+  }
+  
   return (
     <div>
       <h3>Add a Pokemon!</h3>
@@ -52,29 +46,35 @@ const handleSubmit = (event) => {
         onSubmit={handleSubmit}
       >
         <Form.Group widths="equal">
-          <Form.Input fluid label="Name" placeholder="Name" name="name" 
-          onChange={handleChange}
+          <Form.Input 
+          fluid label="Name" 
+          placeholder="Name" 
+          name="name" 
           value={formData.name}
-          />
-          <Form.Input fluid label="hp" placeholder="hp" name="hp" 
           onChange={handleChange}
-          value={formData.hp}
           />
+          <Form.Input 
+            fluid label="hp" 
+            placeholder="hp" 
+            name="hp" 
+            value={formData.hp}
+            onChange={handleChange}
+            />
           <Form.Input
             fluid
             label="Front Image URL"
             placeholder="url"
             name="frontUrl"
-            onChange={handleChange}
             value={formData.frontUrl}
+            onChange={handleChange}
           />
           <Form.Input
             fluid
             label="Back Image URL"
             placeholder="url"
             name="backUrl"
-            onChange={handleChange}
             value={formData.backUrl}
+            onChange={handleChange}
           />
         </Form.Group>
         <Form.Button>Submit</Form.Button>
@@ -84,3 +84,6 @@ const handleSubmit = (event) => {
 }
 
 export default PokemonForm;
+
+// https://img.pokemondb.net/sprites/black-white/shiny/bidoof-f.png
+//https://img.pokemondb.net/sprites/black-white/back-shiny/bidoof-f.png
