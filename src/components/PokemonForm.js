@@ -85,5 +85,14 @@ function PokemonForm({ onAddPokemon }) {
 
 export default PokemonForm;
 
+//step 6 (cont): set up a new useState that directly reflects the information in the database (name,hp,sprites)...this state results in us being able to add new info eventually
+//then need to set up a handleChange and a handleSubmit function, which listens for the end users input on the browser (line 12-28)
+//then we use a fetch POST method to actually add this information to our database (lines 30-40)
+//then we pass the handleSubmit button to the actual form (button)
+//next we add the values to equal the specific keys outlined in the initial state (name, hp, sprites) (lines 53, 58, 60, 76)
+//dont forget to also add the onChange={handleChange} to the forn.inputs.....
+//once this is done, the end user can then add a bidoof.
+
+
 // https://img.pokemondb.net/sprites/black-white/shiny/bidoof-f.png
 //https://img.pokemondb.net/sprites/black-white/back-shiny/bidoof-f.png
