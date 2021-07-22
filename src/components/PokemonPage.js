@@ -14,7 +14,7 @@ function PokemonPage() {
   useEffect(() => {
     fetch("http://localhost:3001/pokemon")
       .then((r) => r.json())
-      .then(setPokemon)
+      .then(data => setPokemon(data))
   }, [])
 
   const handleAddNewPokemon = (addNewPokemon) => {
